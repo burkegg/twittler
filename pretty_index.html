@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="jquery.js"></script>
+    <script src="data_generator.js"></script>
+    <style>
+    .twit {
+
+      box-sizing: content-box;
+      display: block;
+      border: 6px solid #949599;
+      margin: 20px;
+      padding: 20px;
+      max-width: 500px;
+    }
+    header {
+      display: block;
+      margin: 10px;
+      top: 0px;
+      padding: 10px;}
+    body {background-color: powderblue;}
+    flex-box {background: white;}
+  </style>
+  </head>
+  <body>
+
+    <header>
+      <h1>Twittler.  Let's engineer a cat together.</h1>
+    </header>
+
+    <div class = "main">
+      <div>
+        var tweet = streams.home[0];
+    </div>
+
+
+    <script>
+
+      $(document).ready(function(){
+        var $body = $('.main');
+        $body.html('');
+        var index = streams.home.length - 1;
+        while(index >= 0){
+          var tweet = streams.home[index];
+          var $tweet = $('<div class = "twit"></div>');
+          var posted_at = streams.home[index].created_at;
+          console.log(posted_at);
+          $tweet.text('@' + tweet.user + ': ' + tweet.message + '  ' + timeSincePosted(posted_at) + ' ago.';
+          $("body").after($tweet);
+          index -= 1;
+        }
+      });
+      
+    </script>
+  </body>
+</html>
