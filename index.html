@@ -56,9 +56,9 @@
 
             while(current_index > prev_index){
               var tweet = streams.home[current_index];
-              var $tweet = $('<div class = "twit"></div>');
-              var $user = $('<span class = "user"></span>"');
-              var $message = $('<span class = "message"></span>');
+              var $tweet = $('<div class="twit"></div>');
+              var $user = $('<span class="user"></span>"');
+              var $message = $('<span class="message"></span>');
               var $time = $('<span class = "timestamp' + current_index + '"></span>');
               var timeText = '' + timeSincePosted(tweet.created_at) + ' ago.';
               $user.text('@' + tweet.user + ':  ');

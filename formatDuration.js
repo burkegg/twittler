@@ -79,7 +79,7 @@ Take in a number of ms, and convert it to a readable time.
     if (seconds > 1){
       tempString = String(seconds) + ' seconds';
     }else{
-      tempString = String(seconds) + ' second';
+      tempString = String(seconds) + ' seconds';
     }
     arrayOfDurations.push(tempString);
   }
