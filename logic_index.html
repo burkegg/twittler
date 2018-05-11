@@ -15,34 +15,37 @@
   <body>
     <main>
       <header>
-        <h1>Twittler:  Why not engineer a cat?</h1>
+        <h1>Twittler:  Let's engineer this life!</h1>
       </header>
-     <div class = "contain">
-      <div class = "main">
-      </div>
-   </div>
+     
+     <div class = "main">
+     </div>
 
 
     <script>
-
+      let times = [];
       $(document).ready(function(){
-        var $main_block = $('.main');
-        $main_block.html('');
+        var $body = $('.main');
+        $body.html('');
 
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div class = ""></div>');
-          var user = tweet.user;
-          var timestamp = timeSincePosted(tweet.created_at);
-          $tweet.append('<span class = "user"><span>');
-          $tweet.append('<span class = "message"><span>');
-          $tweet.append('<span class = "timestamp"><span>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message + '  ' + timeSincePosted(tweet.created_at) + ' ago.');
-          $tweet.appendTo($main_block);
+          var $tweet = $('<div></div>');
+          var $user = $('<span class = "user"></span>"');
+          var $message = $('<span class = "message"></span>');
+          var $time = $('<span class = "timestamp' + 1 + '"></span>');
+          var timeText = '' + timeSincePosted(tweet.created_at) + ' ago.';
+          $user.text('@' + tweet.user + ':  ');
+          $message.text(tweet.message + ':  ');
+          $time.text(timeText);
+          $user.appendTo($tweet);
+          $message.appendTo($tweet);
+          $time.appendTo($tweet);
+          $tweet.appendTo($body);
           index -= 1;
          }
-
+        
 
         (function(){
           index = streams.home.length - 1;
@@ -52,22 +55,24 @@
             curr_ind_ref = streams.home.length - 1;
             var new_group_of_tweets = [];
 
-            // for each tweet That has been posted,
-            // access the time (which means make it a span that is appended!)
-            // then edit its contents.
 
             while(current_index > prev_index){
               var tweet = streams.home[current_index];
               var $tweet = $('<div class = ".twit"></div>');
 
-              $tweet.text(current_index + '   ' + '@' + tweet.user + ': ' + tweet.message + '  :   ' + '  ' + timeSincePosted(tweet.created_at) + ' ago.');
+              $tweet.text(current_index + '   ' + '@'  + ': ' + tweet.message + '  :   ' + '  ' + timeSincePosted(tweet.created_at) + ' ago.');
               new_group_of_tweets.push($tweet);
               current_index -= 1;
             }
             for (let idx = new_group_of_tweets.length - 1; idx >= 0; idx--){
-              new_group_of_tweets[idx].prependTo($main_block);
+              new_group_of_tweets[idx].prependTo($body);
             }
             prev_index = curr_ind_ref;
+
+            for (let idx = 0; idx < streams.home.length; idx++){
+              $('.timestamp' + idx).text(timeSincePosted(streams.home[idx].created_at));
+            }
+
           }, 5000);
         })();  
 
