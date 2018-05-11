@@ -34,7 +34,7 @@
           var $tweet = $('<div></div>');
           var $user = $('<span class = "user"></span>"');
           var $message = $('<span class = "message"></span>');
-          var $time = $('<span class = "timestamp' + 1 + '"></span>');
+          var $time = $('<span class = "timestamp' + index + '"></span>');
           var timeText = '' + timeSincePosted(tweet.created_at) + ' ago.';
           $user.text('@' + tweet.user + ':  ');
           $message.text(tweet.message + ':  ');
@@ -58,9 +58,19 @@
 
             while(current_index > prev_index){
               var tweet = streams.home[current_index];
-              var $tweet = $('<div class = ".twit"></div>');
+              var $tweet = $('<div></div>');
+              var $user = $('<span class = "user"></span>"');
+              var $message = $('<span class = "message"></span>');
+              var $time = $('<span class = "timestamp' + current_index + '"></span>');
+              var timeText = '' + timeSincePosted(tweet.created_at) + ' ago.';
+              $user.text('@' + tweet.user + ':  ');
+              $message.text(tweet.message + ':  ');
+              $time.text(timeText);
+              $user.appendTo($tweet);
+              $message.appendTo($tweet);
+              $time.appendTo($tweet);
 
-              $tweet.text(current_index + '   ' + '@'  + ': ' + tweet.message + '  :   ' + '  ' + timeSincePosted(tweet.created_at) + ' ago.');
+
               new_group_of_tweets.push($tweet);
               current_index -= 1;
             }
@@ -70,9 +80,8 @@
             prev_index = curr_ind_ref;
 
             for (let idx = 0; idx < streams.home.length; idx++){
-              $('.timestamp' + idx).text(timeSincePosted(streams.home[idx].created_at));
+              $('.timestamp' + idx.toString()).text(timeSincePosted(streams.home[idx].created_at));
             }
-
           }, 5000);
         })();  
 
