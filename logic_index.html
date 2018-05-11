@@ -20,23 +20,30 @@
      <div class = "contain">
       <div class = "main">
       </div>
-    </div>
+   </div>
 
 
     <script>
 
       $(document).ready(function(){
-        var $body = $('.main');
-        $body.html('');
+        var $main_block = $('.main');
+        $main_block.html('');
 
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
+          var $tweet = $('<div class = ""></div>');
+          var user = tweet.user;
+          var timestamp = timeSincePosted(tweet.created_at);
+          $tweet.append('<span class = "user"><span>');
+          $tweet.append('<span class = "message"><span>');
+          $tweet.append('<span class = "timestamp"><span>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message + '  ' + timeSincePosted(tweet.created_at) + ' ago.');
-          $tweet.appendTo($body);
+          $tweet.appendTo($main_block);
           index -= 1;
          }
+
+
         (function(){
           index = streams.home.length - 1;
           prev_index = index;
@@ -54,12 +61,11 @@
               var $tweet = $('<div class = ".twit"></div>');
 
               $tweet.text(current_index + '   ' + '@' + tweet.user + ': ' + tweet.message + '  :   ' + '  ' + timeSincePosted(tweet.created_at) + ' ago.');
-              //$tweet.appendTo($body);
               new_group_of_tweets.push($tweet);
               current_index -= 1;
             }
             for (let idx = new_group_of_tweets.length - 1; idx >= 0; idx--){
-              new_group_of_tweets[idx].prependTo($body);
+              new_group_of_tweets[idx].prependTo($main_block);
             }
             prev_index = curr_ind_ref;
           }, 5000);
