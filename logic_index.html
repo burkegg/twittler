@@ -80,17 +80,11 @@
             prev_index = curr_ind_ref;
 
             for (let idx = 0; idx < streams.home.length; idx++){
-              $('.timestamp' + idx.toString()).text(timeSincePosted(streams.home[idx].created_at));
+              $('.timestamp' + idx.toString()).text(timeSincePosted(streams.home[idx].created_at) + ' ago.');
             }
           }, 5000);
         })();  
-
-
-
-
        });
-
-
     </script>
   </body>
 </html>
