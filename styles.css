@@ -26,18 +26,39 @@ h1{
 }
 
 .twit {
-	display: flex-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	margin: 20px;
 	padding: 15px;
 	border-style: solid;
-	border-width: 2px;
-	align-items: column;
+	border-width: 0px;
 	max-width: 620px;
-	flex-direction: column;
-
 }
 
 .main {
 	display: flex;
 	flex-direction: column;
+}
+
+a {
+	text-decoration: none;
+	color: #222;
+}
+
+a:hover {
+	color: darkblue;
+	border-width: 2px;
+	border-radius: 25px;
+}
+
+.view {
+	display: flex;
+	flex-direction: column;
+	float: left;
+	margin: 20px;
+	padding: 15px;
+	border-style: solid;
+	border-width: 0px;
+	max-width: 150px;
 }

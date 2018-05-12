@@ -2,7 +2,6 @@ let timeSincePosted = function(timePosted){
   let msPosted = timePosted.getTime();
   let curr = new Date();
   let postedAgo = curr - msPosted;
-  console.log(postedAgo);
   return formatDuration(postedAgo);
 }
 
@@ -30,20 +29,19 @@ Take in a number of ms, and convert it to a readable time.
       tempString = String(years) + ' ' + 'year';
     }
     arrayOfDurations.push(tempString);
-      seconds = seconds - years * secondsInYear;
-      tempString = '';
-
+    seconds = seconds - years * secondsInYear;
+    tempString = '';
   }
 
   let days = Math.floor(seconds / secondsInDay);
   if (days > 0) {
     if (days > 1) {
       tempString = String(days) + ' ' + 'days';
-    }else{
+    } else {
       tempString = String(days) + ' ' + 'day';
     }
     arrayOfDurations.push(tempString);
-      seconds = seconds - days * secondsInDay;
+    seconds = seconds - days * secondsInDay;
     tempString = '';
   }
   
@@ -55,7 +53,7 @@ Take in a number of ms, and convert it to a readable time.
       tempString = String(hours) + ' hour';
     }
     arrayOfDurations.push(tempString);
-      seconds = seconds - hours * secondsInHour;
+    seconds = seconds - hours * secondsInHour;
     tempString = '';
   }
   
@@ -74,7 +72,7 @@ Take in a number of ms, and convert it to a readable time.
 
   
   if (seconds > 0){
-          seconds = Math.round(seconds);
+    seconds = Math.round(seconds);
 
     if (seconds > 1){
       tempString = String(seconds) + ' seconds';
@@ -83,7 +81,6 @@ Take in a number of ms, and convert it to a readable time.
     }
     arrayOfDurations.push(tempString);
   }
-  console.log(arrayOfDurations);
   return helperJoin(arrayOfDurations);
 }
 
