@@ -4,9 +4,9 @@ $(document).ready(function(){
   $body.html('');
   let watchUser;
   let filteredTweets;
+  let prefix = streams.home;
 
-
-
+/*
   // Test to see if on user's tweets page.
   if($('title').text() === "User's Tweets"){
     let times = [];
@@ -68,10 +68,10 @@ $(document).ready(function(){
       }, 5000);
     })();
   } else {
-
+*/
     // ****** MAIN PAGE. ********
     // Main Page Logic
-    var index = streams.home.length - 1;
+    var index = prefix.length - 1;
     while(index >= 0){
 
       var tweet = streams.home[index];
@@ -85,7 +85,7 @@ $(document).ready(function(){
       var timeText = '' + timeSincePosted(tweet.created_at) + ' ago.';
       $time.text(timeText);
 
-      $user.text('@' + tweet.user + ':  ');
+      $user.text('@' + tweet.user + ':');
       $message.text(tweet.message);
 
       $user.appendTo($tweet);
@@ -97,16 +97,16 @@ $(document).ready(function(){
     
 
     (function(){
-      index = streams.home.length - 1;
+      index = prefix.length - 1;
       prev_index = index;
       setInterval(function(){
-        current_index = streams.home.length - 1;
-        curr_ind_ref = streams.home.length - 1;
+        current_index = prefix.length - 1;
+        curr_ind_ref = prefix.length - 1;
         var new_group_of_tweets = [];
 
 
         while(current_index > prev_index){
-          var tweet = streams.home[current_index];
+          var tweet = prefix[current_index];
           var $tweet = $('<a class="twit"></a>');
           var $user = $('<span class="user"></span>"');
           var $message = $('<span class="message"></span>');
@@ -115,7 +115,7 @@ $(document).ready(function(){
           $time.text(timeText);
 
 
-          $user.text('@' + tweet.user + ':  ');
+          $user.text('@' + tweet.user + ':');
           $message.text(tweet.message);
           $user.appendTo($tweet);
           $message.appendTo($tweet);
@@ -129,28 +129,37 @@ $(document).ready(function(){
         }
         prev_index = curr_ind_ref;
 
-        for (let idx = 0; idx < streams.home.length; idx++){
-          $('.timestamp' + idx.toString()).text(timeSincePosted(streams.home[idx].created_at) + ' ago.');
+        for (let idx = 0; idx < prefix.length; idx++){
+          $('.timestamp' + idx.toString()).text(timeSincePosted(prefix[idx].created_at) + ' ago.');
         }
       }, 5000);
     })();  
-  }
+  //}. ****** This brace closes else
+
 // Global logic
 // Get the username of the tweet that was clicked on.  Keep that global.
+// only use on() on things that won't go away....ugh.
   $('.twit').on('click', function(){
 
     watchUser = $(this).find('.user').text();
     watchUser = watchUser.slice(1);
-    console.log(typeof watchUser);
+    watchUser = watchUser.slice(0, watchUser.length - 1);
+    prefix = streams.users[watchUser];
+    $('.main').empty();
+    $('.view').text('Here are ' + watchUser + "'s texts.");
+    $('.view').append('<button class = "backButton">See all users</button>')
     filteredTweets = _.filter(streams.home, function(tweet){
-
       if (tweet.hasOwnProperty(watchUser)){
         console.log('inside');
         return tweet;
       }
     });
     console.log(filteredTweets);
-    //window.location = 'userTexts.html';
   });
 
+
 });
+
+
+
+
