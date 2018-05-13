@@ -13,7 +13,7 @@ $(document).ready(function(){
     var $message = $('<span class = "message"></span>');
 
     // Time 
-    var $time = $('<span class = "timestamp"' + current_index + '"></span>');
+    var $time = $('<span class = "timestamp"' + current_index + '></span>');
     var timeText = '' + timeSincePosted(tweet.created_at) + ' ago.';
     $time.text(timeText);
 
@@ -28,13 +28,14 @@ $(document).ready(function(){
 
     // Main Page Logic
   var current_index = prefix.length - 1;
-  while(current_index >= 0){
+  var index = prefix.length - 1;
+  while(index >= 0){
 
-    var tweet = prefix[current_index];
+    var tweet = prefix[index];
     history.push(tweet);
     var $tweet = $('<a class="twit"></a>');
     formatTweet(tweet);
-    current_index -= 1;
+    index -= 1;
    }
   
 
@@ -57,7 +58,7 @@ $(document).ready(function(){
         var $tweet = $('<a class="twit"></a>');
         var $user = $('<span class="user"></span>"');
         var $message = $('<span class="message"></span>');
-        var $time = $('<span class = "timestamp"' + current_index + '"></span>');
+        var $time = $('<span class = "timestamp' + current_index + '></span>');
         var timeText = '' + timeSincePosted(tweet.created_at) + ' ago.';
         $time.text(timeText);
 
@@ -104,9 +105,8 @@ $(document).ready(function(){
 
   $(document).on('click', '.backButton', function(){
     $('.main').empty();
-    $('.view').text('Things are getting weird on Twittler.')
-    prefix = streams.home;
      for (let idx = 0; idx < history.length; idx++){
+       $('.view').text('Things are getting weird on Twittler.')
        formatTweet(history[idx]);
     }
   });
