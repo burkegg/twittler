@@ -38,7 +38,7 @@ $(document).ready(function(){
 			}
 		}
 	}
-    
+       
 	postAllTweets(streams.home);
     let counter = 0;
     let bottom_of_loop_idx = history.length - 1;
