@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var $main = $('.main');
+    var $main = $('.main');
 	$main.html('');
 	var history = [];
 	var prefix = streams.home;
@@ -10,19 +10,19 @@ $(document).ready(function(){
 	let postTweet = function(tweet, home_idx){
 		// Formats and posts a tweet to the page.
 		var $tweet = $('<a class="twit"></a>');
-    	var $user = $('<span class = "user"></span>"');
-    	var $message = $('<span class = "message"></span>');
-    	var $time = $('<span class = "timestamp' + home_idx + '"></span>');
-    	var timeText = '' + timeSincePosted(tweet.created_at) + ' ago.';
-    	$time.text(timeText);
-    	$user.text('@' + tweet.user + ':');
-    	$message.text(tweet.message);
+		var $user = $('<span class = "user"></span>"');
+		var $message = $('<span class = "message"></span>');
+		var $time = $('<span class = "timestamp' + home_idx + '"></span>');
+		var timeText = '' + timeSincePosted(tweet.created_at) + ' ago.';
+		$time.text(timeText);
+		$user.text('@' + tweet.user + ':');
+		$message.text(tweet.message);
 
-    	$user.appendTo($tweet);
-    	$message.appendTo($tweet);
-    	$time.appendTo($tweet);
-    	$tweet.prependTo($main);
-    	history.push(tweet);
+		$user.appendTo($tweet);
+		$message.appendTo($tweet);
+		$time.appendTo($tweet);
+		$tweet.prependTo($main);
+		history.push(tweet);
 	}
 
     // Pre-loop post of initial streams.home.  This should only happen once.
@@ -54,7 +54,7 @@ $(document).ready(function(){
 
     	for (let idx = 0; idx < prefix.length; idx++){
     	$('.timestamp' + idx.toString()).text(timeSincePosted(prefix[idx].created_at));
-			}
+		}
     }, 5000) 
 
 	// A user can click on a tweet to see all of that user's tweets.
@@ -79,6 +79,4 @@ $(document).ready(function(){
 		postAllTweets(prefix);
 		$('.view').text('Things are getting weird on Twittler.');
 	});
-
-
 });
