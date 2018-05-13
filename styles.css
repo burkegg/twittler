@@ -40,7 +40,7 @@ h1{
 	float: left;
 	max-width: 150px;
 }
-.timestamp{
+.time{
 	color: grey;
 	align-self: flex-end;
 }

@@ -12,7 +12,7 @@ $(document).ready(function(){
 		var $tweet = $('<a class="twit"></a>');
 		var $user = $('<span class = "user"></span>"');
 		var $message = $('<span class = "message"></span>');
-		var $time = $('<span class = "timestamp' + home_idx + '"></span>');
+		var $time = $('<span class = "time timestamp' + home_idx + '"></span>');
 		var timeText = '' + timeSincePosted(tweet.created_at) + ' ago.';
 		$time.text(timeText);
 		$user.text('@' + tweet.user + ':');
