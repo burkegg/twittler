@@ -8,13 +8,12 @@ $(document).ready(function(){
     let prefix = streams.home;
 
   let formatTweet = function(tweet){
-    // Take in a tweet object.  Format it and append it to the DOM.
     var $tweet = $('<a class="twit"></a>');
     var $user = $('<span class = "user"></span>"');
     var $message = $('<span class = "message"></span>');
 
     // Time 
-    var $time = $('<span class = "timestamp' + index + '"></span>');
+    var $time = $('<span class = "timestamp"' + index + '"></span>');
     var timeText = '' + timeSincePosted(tweet.created_at) + ' ago.';
     $time.text(timeText);
 
@@ -34,9 +33,7 @@ $(document).ready(function(){
     var tweet = prefix[index];
     history.push(tweet);
     var $tweet = $('<a class="twit"></a>');
-
     formatTweet(tweet);
-
     index -= 1;
    }
   
@@ -54,8 +51,21 @@ $(document).ready(function(){
         var tweet = prefix[current_index];
         history.push(tweet);
 
-        formatTweet(tweet);
-        
+        var $tweet = $('<a class="twit"></a>');
+        var $user = $('<span class="user"></span>"');
+        var $message = $('<span class="message"></span>');
+        var $time = $('<span class = "timestamp"' + current_index + '"></span>');
+        var timeText = '' + timeSincePosted(tweet.created_at) + ' ago.';
+        $time.text(timeText);
+
+
+        $user.text('@' + tweet.user + ':');
+        $message.text(tweet.message);
+        $user.appendTo($tweet);
+        $message.appendTo($tweet);
+        $time.appendTo($tweet);
+
+        new_group_of_tweets.push($tweet);
         current_index -= 1;
       }
       for (let idx = new_group_of_tweets.length - 1; idx >= 0; idx--){

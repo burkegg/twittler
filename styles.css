@@ -5,15 +5,25 @@ header {
 	height: auto;
 	padding: 0px;
 	margin: 0px;
+	border-radius: 8px;
 }
-
+button{
+	height: 30px;
+	font-size: 1em;
+	border-radius: 5px;
+	margin-top: 15px;
+}
 body {
-	display: flex;
+	display: flex-box;
 	background-color: rgba(255, 232, 160, 1);
  	padding: 10px;
  	justify-content: center;
 }
-
+.sideBar {
+	display: flex;
+	float: left;
+	flex-direction: column;
+}
 .message {
 	font-size: 2em;
 	padding: 5px;
@@ -25,6 +35,14 @@ h1{
 	text-align: center;
 }
 
+.sideContainer{
+	float: left;
+	max-width: 150px;
+}
+.timestamp{
+	color: grey;
+	align-self: flex-end;
+}
 .twit {
 	display: flex;
 	flex-direction: column;
@@ -34,6 +52,10 @@ h1{
 	border-style: solid;
 	border-width: 0px;
 	max-width: 620px;
+}
+
+.twit:hover{
+	background-color: rgba(250, 207, 179, .4);
 }
 
 .main {
@@ -55,10 +77,9 @@ a:hover {
 .view {
 	display: flex;
 	flex-direction: column;
-	float: left;
 	margin: 20px;
 	padding: 15px;
 	border-style: solid;
 	border-width: 0px;
-	max-width: 150px;
+	max-width: 180px;
 }
