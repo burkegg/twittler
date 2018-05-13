@@ -5,7 +5,7 @@ $(document).ready(function(){
   let watchUser;
   let filteredTweets;
   let history = streams.home.slice();
-    let prefix = streams.home;
+  let prefix = streams.home;
 
   let formatTweet = function(tweet){
     var $tweet = $('<a class="twit"></a>');
@@ -13,7 +13,7 @@ $(document).ready(function(){
     var $message = $('<span class = "message"></span>');
 
     // Time 
-    var $time = $('<span class = "timestamp"' + index + '"></span>');
+    var $time = $('<span class = "timestamp' + current_index + '"></span>');
     var timeText = '' + timeSincePosted(tweet.created_at) + ' ago.';
     $time.text(timeText);
 
@@ -27,20 +27,22 @@ $(document).ready(function(){
   }
 
     // Main Page Logic
-  var index = prefix.length - 1;
-  while(index >= 0){
+  var current_index = prefix.length - 1;
+  while(current_index >= 0){
 
-    var tweet = prefix[index];
+    var tweet = prefix[current_index];
     history.push(tweet);
     var $tweet = $('<a class="twit"></a>');
     formatTweet(tweet);
-    index -= 1;
+    current_index -= 1;
    }
   
 
   (function(){
     index = prefix.length - 1;
     prev_index = index;
+
+
     setInterval(function(){
       current_index = prefix.length - 1;
       curr_ind_ref = prefix.length - 1;
@@ -48,13 +50,14 @@ $(document).ready(function(){
 
 
       while(current_index > prev_index){
+        history.push(streams.home[current_index]);
         var tweet = prefix[current_index];
-        history.push(tweet);
+        //history.push(tweet);
 
         var $tweet = $('<a class="twit"></a>');
         var $user = $('<span class="user"></span>"');
         var $message = $('<span class="message"></span>');
-        var $time = $('<span class = "timestamp"' + current_index + '"></span>');
+        var $time = $('<span class = "timestamp' + current_index + '"></span>');
         var timeText = '' + timeSincePosted(tweet.created_at) + ' ago.';
         $time.text(timeText);
 
