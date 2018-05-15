@@ -34,14 +34,14 @@ $(document).ready(function(){
 			for (let idx = 0; idx < pre_loop_idx; idx++){
 				let aTweet = current_prefix[idx];
 				postTweet(aTweet, idx);
-
+				//console.log('This is pre-loop ' + idx);
 			}
 		}
 	}
        
 	postAllTweets(streams.home);
     let counter = 0;
-    let bottom_of_loop_idx = history.length - 1;
+    let bottom_of_loop_idx = history.length;
 	setInterval(function(){
 		// Each interval should check for new tweets in the current prefix.
 		// It should also update all timestamps for posted tweets.
@@ -49,6 +49,7 @@ $(document).ready(function(){
   		let top_of_loop_idx = prefix.length - 1;
   		for (let idx = bottom_of_loop_idx; idx <= top_of_loop_idx; idx++){
   			postTweet(prefix[idx], idx);
+  			//console.log('This is looping ' + idx);
   		}
   		bottom_of_loop_idx = top_of_loop_idx;
 
